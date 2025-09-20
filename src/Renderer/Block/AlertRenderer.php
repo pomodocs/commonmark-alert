@@ -1,0 +1,74 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the pomodocs/commonmark-alert package.
+ * MIT License. For the full copyright and license information,
+ * please view the LICENSE file that was distributed
+ * with this source code.
+ */
+
+namespace PomoDocs\CommonMarkAlert\Renderer\Block;
+
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
+use League\CommonMark\Xml\XmlNodeRendererInterface;
+use League\Config\ConfigurationAwareInterface;
+use League\Config\ConfigurationInterface;
+use PomoDocs\CommonMarkAlert\Node\Block\Alert;
+
+final class AlertRenderer implements NodeRendererInterface, XmlNodeRendererInterface, ConfigurationAwareInterface
+{
+    private ConfigurationInterface $config;
+
+    public function setConfiguration(ConfigurationInterface $configuration): void
+    {
+        $this->config = $configuration;
+    }
+
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
+    {
+        Alert::assertInstanceOf($node);
+
+        /** @var Alert $node */
+        $type  = $node->getType();
+        $class = $this->config->get('alert/class_name');
+        $svg   = $this->config->get('alert/icons') ? $this->config->get("alert/icon_svg/{$type}") : '';
+
+        $title = "<span>{$svg}" . \ucfirst($type) . '</span>';
+        $title = $this->config->get('alert/strong_title') ? "<strong>$title</strong>" : $title;
+
+        $attributes          = $node->data->get('attributes');
+        $attributes['class'] = "{$class} {$class}-" . $this->config->get("alert/colors/{$type}");
+
+        $filling        = $childRenderer->renderNodes($node->children());
+        $innerSeparator = $childRenderer->getInnerSeparator();
+
+        $content = $innerSeparator
+            . $title
+            . $innerSeparator
+            . ($filling !== '' ? $filling . $innerSeparator : '');
+
+        return new HtmlElement('div', $attributes, $content);
+    }
+
+    public function getXmlTagName(Node $node): string
+    {
+        return 'alert';
+    }
+
+    /**
+     * @param Alert $node
+     *
+     * @return array<string, scalar>
+     */
+    public function getXmlAttributes(Node $node): array
+    {
+        return [
+            'type' => $node->getType(),
+        ];
+    }
+}
