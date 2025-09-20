@@ -16,8 +16,9 @@ use League\CommonMark\Parser\Block\BlockStartParserInterface;
 use League\CommonMark\Parser\Cursor;
 use League\CommonMark\Parser\MarkdownParserStateInterface;
 
-class AlertStartParser implements BlockStartParserInterface
+final class AlertStartParser implements BlockStartParserInterface
 {
+    #[\Override]
     public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): BlockStart|null
     {
         if ($cursor->isIndented() || $cursor->getNextNonSpaceCharacter() !== '>') {

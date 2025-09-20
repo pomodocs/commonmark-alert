@@ -16,7 +16,7 @@ use League\CommonMark\Node\Block\AbstractBlock;
 /**
  * Node class to model an alert block.
  */
-class Alert extends AbstractBlock
+final class Alert extends AbstractBlock
 {
     /**
      * @param string $type The alert type. Possible values are: note, tip, important, warning, caution.
