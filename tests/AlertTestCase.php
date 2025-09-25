@@ -22,6 +22,9 @@ use PHPUnit\Framework\TestCase;
 
 class AlertTestCase extends TestCase
 {
+    /**
+     * @return array<int, string[]>
+     */
     public static function markdownProvider(): array
     {
         return [
@@ -83,6 +86,9 @@ sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
         ];
     }
 
+    /**
+     * @return array<int, string[]>
+     */
     public static function markdownConfigurationProvider(): array
     {
         return [
@@ -144,6 +150,9 @@ sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
         ];
     }
 
+    /**
+     * @return array<int, string[]>
+     */
     public static function markdownClassProvider(): array
     {
         return [
@@ -205,6 +214,9 @@ sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
         ];
     }
 
+    /**
+     * @return array<int, string[]>
+     */
     public static function markdownXml(): array
     {
         return [

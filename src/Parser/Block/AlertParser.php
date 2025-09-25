@@ -30,26 +30,22 @@ final class AlertParser extends AbstractBlockContinueParser
         $this->block = new Alert($type);
     }
 
-    #[\Override]
     public function getBlock(): Alert
     {
         return $this->block;
     }
 
-    #[\Override]
     public function isContainer(): bool
     {
         return true;
     }
 
-    #[\Override]
     public function canContain(AbstractBlock $childBlock): bool
     {
         return true;
     }
 
-    #[\Override]
-    public function tryContinue(Cursor $cursor, BlockContinueParserInterface $activeBlockParser): BlockContinue|null
+    public function tryContinue(Cursor $cursor, BlockContinueParserInterface $activeBlockParser): ?BlockContinue
     {
         if ($cursor->isIndented() || $cursor->getNextNonSpaceCharacter() !== '>') {
             return BlockContinue::none();

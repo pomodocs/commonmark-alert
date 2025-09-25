@@ -24,14 +24,18 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('> [!NOTE]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNotNull($start);
 
         $parsers = $start->getBlockParsers();
         $this->assertCount(1, $parsers);
 
-        $block = $parsers[0]->getBlock();
+        $block = null;
+        foreach ($parsers as $parser) {
+            $block = $parser->getBlock();
+        }
+
         $this->assertInstanceOf(Alert::class, $block);
 
         $this->assertSame('note', $block->getType());
@@ -42,14 +46,18 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('> [!TIP]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNotNull($start);
 
         $parsers = $start->getBlockParsers();
         $this->assertCount(1, $parsers);
 
-        $block = $parsers[0]->getBlock();
+        $block = null;
+        foreach ($parsers as $parser) {
+            $block = $parser->getBlock();
+        }
+
         $this->assertInstanceOf(Alert::class, $block);
 
         $this->assertSame('tip', $block->getType());
@@ -60,14 +68,18 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('> [!IMPORTANT]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNotNull($start);
 
         $parsers = $start->getBlockParsers();
         $this->assertCount(1, $parsers);
 
-        $block = $parsers[0]->getBlock();
+        $block = null;
+        foreach ($parsers as $parser) {
+            $block = $parser->getBlock();
+        }
+
         $this->assertInstanceOf(Alert::class, $block);
 
         $this->assertSame('important', $block->getType());
@@ -78,14 +90,18 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('> [!WARNING]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNotNull($start);
 
         $parsers = $start->getBlockParsers();
         $this->assertCount(1, $parsers);
 
-        $block = $parsers[0]->getBlock();
+        $block = null;
+        foreach ($parsers as $parser) {
+            $block = $parser->getBlock();
+        }
+
         $this->assertInstanceOf(Alert::class, $block);
 
         $this->assertSame('warning', $block->getType());
@@ -96,14 +112,18 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('> [!CAUTION]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNotNull($start);
 
         $parsers = $start->getBlockParsers();
         $this->assertCount(1, $parsers);
 
-        $block = $parsers[0]->getBlock();
+        $block = null;
+        foreach ($parsers as $parser) {
+            $block = $parser->getBlock();
+        }
+        
         $this->assertInstanceOf(Alert::class, $block);
 
         $this->assertSame('caution', $block->getType());
@@ -114,7 +134,7 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('  [!NOTE]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNull($start);
     }
@@ -124,7 +144,7 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('! [!NOTE]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNull($start);
     }
@@ -134,7 +154,7 @@ final class AlertStartParserTest extends TestCase
         $cursor = new Cursor('> [!WRONG]');
 
         $parser = new AlertStartParser();
-        $start  = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
         $this->assertNull($start);
     }

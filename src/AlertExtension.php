@@ -21,8 +21,6 @@ use PomoDocs\CommonMarkAlert\Renderer\Block\AlertRenderer;
 
 /**
  * Alert extension class.
- *
- * @psalm-suppress UnusedClass
  */
 final class AlertExtension implements ConfigurableExtensionInterface
 {
@@ -48,7 +46,6 @@ final class AlertExtension implements ConfigurableExtensionInterface
      * ```
      * - `icon-svg`: icons in svg format. Default to Octicons svg icons.
      */
-    #[\Override]
     public function configureSchema(ConfigurationBuilderInterface $builder): void
     {
         $builder->addSchema('alert', Expect::structure([
@@ -83,7 +80,6 @@ final class AlertExtension implements ConfigurableExtensionInterface
      * Register this extension to priority 80, to be executed before the default
      * BlockQuote parser (priority 70).
      */
-    #[\Override]
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $environment

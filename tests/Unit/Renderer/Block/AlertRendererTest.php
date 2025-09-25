@@ -21,7 +21,7 @@ final class AlertRendererTest extends TestCase
 {
     public function testSetConfiguration(): void
     {
-        $config    = Environment::createDefaultConfiguration();
+        $config = Environment::createDefaultConfiguration();
         $extension = new AlertExtension();
         $extension->configureSchema($config);
         $configuration = $config->reader();

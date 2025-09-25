@@ -18,8 +18,7 @@ use League\CommonMark\Parser\MarkdownParserStateInterface;
 
 final class AlertStartParser implements BlockStartParserInterface
 {
-    #[\Override]
-    public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): BlockStart|null
+    public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): ?BlockStart
     {
         if ($cursor->isIndented() || $cursor->getNextNonSpaceCharacter() !== '>') {
             return BlockStart::none();
@@ -29,7 +28,7 @@ final class AlertStartParser implements BlockStartParserInterface
 
         $type = $cursor->match('/\[\!NOTE\]|\[\!TIP\]|\[\!IMPORTANT\]|\[\!WARNING\]|\[\!CAUTION\]/');
 
-        if (\is_null($type)) {
+        if ($type === null) {
             return BlockStart::none();
         }
 

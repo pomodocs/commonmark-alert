@@ -17,15 +17,13 @@
   },
   "require": {
     "php": ">=8.2",
-    "league/commonmark": "^2.7",
-    "unleashedtech/php-coding-standard": "^3.1",
-    "psalm/phar": "^6.13"
+    "league/commonmark": "^2.7"
   },
   "require-dev": {
     "phpunit/phpunit": "^12.3"
   },
   "scripts": {
-    "analytics": "psalm.phar",
+    "analytics": "tools/phpstan analyze",
     "check": [
       "@test",
       "@analytics",
@@ -33,8 +31,8 @@
     ],
     "coverage:html": "@test --coverage-html coverage/",
     "coverage:clover": "@test --coverage-clover clover.xml",
-    "cs:check": "phpcs",
-    "cs:fix": "phpcbf",
+    "cs:check": "tools/php-cs-fixer fix -v --diff --dry-run",
+    "cs:fix": "tools/php-cs-fixer fix -v --diff",
     "test": "phpunit"
   },
   "scripts-descriptions": {
@@ -45,10 +43,5 @@
     "coverage:html": "Create a code coverage report in html format, into the `coverage/` directory",
     "coverage:clover": "Create a code coverage report in xml format, into the `clover.xml` file",
     "test": "Run the test suite"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
   }
 }
