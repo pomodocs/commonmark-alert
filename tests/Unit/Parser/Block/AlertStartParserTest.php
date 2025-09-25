@@ -123,7 +123,7 @@ final class AlertStartParserTest extends TestCase
         foreach ($parsers as $parser) {
             $block = $parser->getBlock();
         }
-        
+
         $this->assertInstanceOf(Alert::class, $block);
 
         $this->assertSame('caution', $block->getType());

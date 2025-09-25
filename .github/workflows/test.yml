@@ -1,0 +1,32 @@
+# Run test suite
+name: Tests
+on: [push, pull_request]
+jobs:
+  test:
+    name: test
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ["8.3", "8.4"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring
+          coverage: none
+      - name: Install tools
+        uses: ngmy/phive-install-action@master
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: "--prefer-dist --optimize-autoloader"
+      - name: Check coding standard
+        run: composer cs:check
+      - name: Static analysis tool
+        run: composer analytics
+      - name: Test suite
+        run: composer test
