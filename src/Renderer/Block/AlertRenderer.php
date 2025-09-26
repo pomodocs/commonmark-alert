@@ -47,11 +47,9 @@ final class AlertRenderer implements NodeRendererInterface, XmlNodeRendererInter
         /** @var string $class */
         $class = $this->config->get('alert/class_name');
 
-        /** @var string $svg */
-        $svg = $this->config->get('alert/icons') ? $this->config->get("alert/icon_svg/$type") : '';
+        $icon = $this->getIconString($type);
 
-        $title = "<span>$svg" . \ucfirst($type) . "</span>";
-        $title = $this->config->get('alert/strong_title') ? "<strong>$title</strong>" : $title;
+        $title = "<p class=\"$class-title\">$icon" . \ucfirst($type) . "</p>";
 
         /** @var array<string, array<array-key, string>> $attributes */
         $attributes = $node->data->get('attributes');
@@ -85,5 +83,21 @@ final class AlertRenderer implements NodeRendererInterface, XmlNodeRendererInter
         return [
             'type' => $node->getType(),
         ];
+    }
+
+    /**
+     * Return an html string representing the icon for the alert title.
+     *
+     * @param string $type The type of alert.
+     * @return string
+     */
+    private function getIconString(string $type): string
+    {
+        return $this->config->get('alert/icons/active') ? (
+            $this->config->get('alert/icons/use_svg')
+                ? $this->config->get("alert/icons/svg/$type")
+                : "<i class=\"{$this->config->get("alert/icons/names/$type")}\"></i>"
+        )
+        : "";
     }
 }

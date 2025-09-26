@@ -25,9 +25,9 @@
   "scripts": {
     "analytics": "tools/phpstan analyze",
     "check": [
+      "@cs:fix",
       "@test",
-      "@analytics",
-      "@cs:fix"
+      "@analytics"
     ],
     "coverage:html": "@test --coverage-html coverage/",
     "coverage:clover": "@test --coverage-clover clover.xml",

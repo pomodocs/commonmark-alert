@@ -43,7 +43,10 @@ final class AlertExtensionTest extends AlertTestCase
                     'warning' => 'warning',
                     'caution' => 'danger',
                 ],
-                'icons' => true,
+                'icons' => [
+                    'active' => true,
+                    'use_svg' => true,
+                ],
             ],
         ];
 
@@ -61,7 +64,33 @@ final class AlertExtensionTest extends AlertTestCase
         $config = [
             'alert' => [
                 'class_name' => 'admonition',
-                'strong_title' => false,
+            ],
+        ];
+
+        $environment = new Environment($config);
+        $environment->addExtension(new AlertExtension());
+        $environment->addExtension(new CommonMarkCoreExtension());
+        $converter = new MarkdownConverter($environment);
+
+        $this->assertEquals($expected, (string) $converter->convert($md));
+    }
+
+    #[DataProvider('markdownIconProvider')]
+    public function testRenderWithIconNames(string $md, string $expected): void
+    {
+        $config = [
+            'alert' => [
+                'colors' => [
+                    'note' => 'primary',
+                    'tip' => 'info',
+                    'important' => 'success',
+                    'warning' => 'warning',
+                    'caution' => 'danger',
+                ],
+                'icons' => [
+                    'active' => true,
+                    'use_svg' => false,
+                ],
             ],
         ];
 
