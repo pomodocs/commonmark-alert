@@ -26,25 +26,6 @@ final class AlertExtension implements ConfigurableExtensionInterface
 {
     /**
      * Configure the Alert extension.
-     * Properties:
-     *
-     * - `class_name`: the css class to apply to the rendered <div> tag, containing the alert. Default is `alert`.
-     * - `colors`: the css class corresponding to the color to use. Default to the name of the alert.
-     * - `strong_title`: if the title and the icon must be in bold style. Enabled by default.
-     * - `icons`: if use icons in the title. Disabled by default.
-     * - `icon-names`: it allows to use different sets of icons (default is Octicons). I.e.
-     * Fontawesome icons could be set like the following:
-     *
-     * ```yaml
-     * alert:
-     *   icon_names:
-     *     note: "fa-solid fa-circle-info"
-     *     tip: "fa-regular fa-lightbulb"
-     *     important: "fa-solid fa-exclamation"
-     *     warning: "fa-solid fa-triangle-exclamation"
-     *     caution: "fa-solid fa-circle-exclamation"
-     * ```
-     * - `icon-svg`: icons in svg format. Default to Octicons svg icons.
      */
     public function configureSchema(ConfigurationBuilderInterface $builder): void
     {
