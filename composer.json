@@ -2,7 +2,6 @@
   "name": "pomodocs/commonmark-alert",
   "description": "CommonMark extension to support alerts in Github blockquote style",
   "license": "MIT",
-  "version": "0.0.1",
   "type": "commonmark-extension",
   "minimum-stability": "stable",
   "autoload": {
