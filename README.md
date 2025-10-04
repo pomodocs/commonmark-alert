@@ -26,7 +26,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\MarkdownConverter;
-use PomoDocs\CommonMarkAlert\AlertExtension;
+use PomoDocs\CommonMark\Alert\AlertExtension;
 
 $environment = new Environment();
 
@@ -76,7 +76,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\MarkdownConverter;
-use PomoDocs\CommonMarkAlert\AlertExtension;
+use PomoDocs\CommonMark\Alert\AlertExtension;
 
 $config = [
     'alert' => [

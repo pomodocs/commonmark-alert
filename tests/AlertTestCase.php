@@ -9,7 +9,7 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Tests;
+namespace PomoDocs\CommonMark\Alert\Tests;
 
 use PHPUnit\Framework\TestCase;
 

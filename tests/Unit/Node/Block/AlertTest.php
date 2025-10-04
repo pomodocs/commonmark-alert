@@ -9,10 +9,10 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Tests\Unit\Node\Block;
+namespace PomoDocs\CommonMark\Alert\Tests\Unit\Node\Block;
 
 use PHPUnit\Framework\TestCase;
-use PomoDocs\CommonMarkAlert\Node\Block\Alert;
+use PomoDocs\CommonMark\Alert\Node\Block\Alert;
 
 final class AlertTest extends TestCase
 {

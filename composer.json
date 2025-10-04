@@ -6,12 +6,12 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "PomoDocs\\CommonMarkAlert\\": "src/"
+      "PomoDocs\\CommonMark\\Alert\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "PomoDocs\\CommonMarkAlert\\Tests\\": "tests/"
+      "PomoDocs\\CommonMark\\Alert\\Tests\\": "tests/"
     }
   },
   "require": {

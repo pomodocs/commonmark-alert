@@ -9,12 +9,12 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Tests\Unit\Renderer\Block;
+namespace PomoDocs\CommonMark\Alert\Tests\Unit\Renderer\Block;
 
 use League\CommonMark\Environment\Environment;
 use PHPUnit\Framework\TestCase;
-use PomoDocs\CommonMarkAlert\AlertExtension;
-use PomoDocs\CommonMarkAlert\Renderer\Block\AlertRenderer;
+use PomoDocs\CommonMark\Alert\AlertExtension;
+use PomoDocs\CommonMark\Alert\Renderer\Block\AlertRenderer;
 use ReflectionProperty;
 
 final class AlertRendererTest extends TestCase

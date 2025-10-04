@@ -9,14 +9,14 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Parser\Block;
+namespace PomoDocs\CommonMark\Alert\Parser\Block;
 
 use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
 use League\CommonMark\Parser\Cursor;
-use PomoDocs\CommonMarkAlert\Node\Block\Alert;
+use PomoDocs\CommonMark\Alert\Node\Block\Alert;
 
 final class AlertParser extends AbstractBlockContinueParser
 {

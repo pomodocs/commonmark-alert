@@ -9,7 +9,7 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Parser\Block;
+namespace PomoDocs\CommonMark\Alert\Parser\Block;
 
 use League\CommonMark\Parser\Block\BlockStart;
 use League\CommonMark\Parser\Block\BlockStartParserInterface;

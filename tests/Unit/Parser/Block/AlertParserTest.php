@@ -9,15 +9,15 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Tests\Unit\Parser\Block;
+namespace PomoDocs\CommonMark\Alert\Tests\Unit\Parser\Block;
 
 use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
 use League\CommonMark\Parser\Cursor;
 use PHPUnit\Framework\TestCase;
-use PomoDocs\CommonMarkAlert\Node\Block\Alert;
-use PomoDocs\CommonMarkAlert\Parser\Block\AlertParser;
+use PomoDocs\CommonMark\Alert\Node\Block\Alert;
+use PomoDocs\CommonMark\Alert\Parser\Block\AlertParser;
 
 final class AlertParserTest extends TestCase
 {

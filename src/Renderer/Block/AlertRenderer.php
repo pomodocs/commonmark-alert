@@ -9,7 +9,7 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Renderer\Block;
+namespace PomoDocs\CommonMark\Alert\Renderer\Block;
 
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
@@ -18,7 +18,7 @@ use League\CommonMark\Util\HtmlElement;
 use League\CommonMark\Xml\XmlNodeRendererInterface;
 use League\Config\ConfigurationAwareInterface;
 use League\Config\ConfigurationInterface;
-use PomoDocs\CommonMarkAlert\Node\Block\Alert;
+use PomoDocs\CommonMark\Alert\Node\Block\Alert;
 
 /**
  * Renderer for Alert block.

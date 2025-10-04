@@ -9,7 +9,7 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Node\Block;
+namespace PomoDocs\CommonMark\Alert\Node\Block;
 
 use League\CommonMark\Node\Block\AbstractBlock;
 

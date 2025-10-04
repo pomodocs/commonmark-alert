@@ -9,15 +9,15 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert\Tests\Unit;
+namespace PomoDocs\CommonMark\Alert\Tests\Unit;
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Output\RenderedContentInterface;
 use League\CommonMark\Xml\MarkdownToXmlConverter;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PomoDocs\CommonMarkAlert\AlertExtension;
-use PomoDocs\CommonMarkAlert\Tests\AlertTestCase;
+use PomoDocs\CommonMark\Alert\AlertExtension;
+use PomoDocs\CommonMark\Alert\Tests\AlertTestCase;
 
 final class MarkdownToXmlConverterTest extends AlertTestCase
 {

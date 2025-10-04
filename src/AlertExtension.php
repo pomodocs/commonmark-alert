@@ -9,15 +9,15 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMarkAlert;
+namespace PomoDocs\CommonMark\Alert;
 
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ConfigurableExtensionInterface;
 use League\Config\ConfigurationBuilderInterface;
 use Nette\Schema\Expect;
-use PomoDocs\CommonMarkAlert\Node\Block\Alert;
-use PomoDocs\CommonMarkAlert\Parser\Block\AlertStartParser;
-use PomoDocs\CommonMarkAlert\Renderer\Block\AlertRenderer;
+use PomoDocs\CommonMark\Alert\Node\Block\Alert;
+use PomoDocs\CommonMark\Alert\Parser\Block\AlertStartParser;
+use PomoDocs\CommonMark\Alert\Renderer\Block\AlertRenderer;
 
 /**
  * Alert extension class.
