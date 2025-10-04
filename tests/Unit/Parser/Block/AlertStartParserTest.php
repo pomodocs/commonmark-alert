@@ -9,153 +9,134 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMark\Alert\Tests\Unit\Parser\Block;
-
 use League\CommonMark\Parser\Cursor;
 use League\CommonMark\Parser\MarkdownParserStateInterface;
-use PHPUnit\Framework\TestCase;
 use PomoDocs\CommonMark\Alert\Node\Block\Alert;
 use PomoDocs\CommonMark\Alert\Parser\Block\AlertStartParser;
 
-final class AlertStartParserTest extends TestCase
-{
-    public function testAlertStartNote(): void
-    {
-        $cursor = new Cursor('> [!NOTE]');
+it('recognizes a NOTE block', function () {
+    $cursor = new Cursor('> [!NOTE]');
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
-        $this->assertNotNull($start);
+    expect($start)->not->toBeNull();
 
-        $parsers = $start->getBlockParsers();
-        $this->assertCount(1, $parsers);
+    $parsers = $start->getBlockParsers();
+    $this->assertCount(1, $parsers);
 
-        $block = null;
-        foreach ($parsers as $parser) {
-            $block = $parser->getBlock();
-        }
-
-        $this->assertInstanceOf(Alert::class, $block);
-
-        $this->assertSame('note', $block->getType());
+    $block = null;
+    foreach ($parsers as $parser) {
+        $block = $parser->getBlock();
     }
 
-    public function testAlertStartTip(): void
-    {
-        $cursor = new Cursor('> [!TIP]');
+    expect($block)->toBeInstanceOf(Alert::class)
+        ->and($block->getType())->toBe('note');
+});
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+it('recognizes a TIP block', function () {
+    $cursor = new Cursor('> [!TIP]');
 
-        $this->assertNotNull($start);
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
-        $parsers = $start->getBlockParsers();
-        $this->assertCount(1, $parsers);
+    expect($start)->not->toBeNull();
 
-        $block = null;
-        foreach ($parsers as $parser) {
-            $block = $parser->getBlock();
-        }
+    $parsers = $start->getBlockParsers();
+    $this->assertCount(1, $parsers);
 
-        $this->assertInstanceOf(Alert::class, $block);
-
-        $this->assertSame('tip', $block->getType());
+    $block = null;
+    foreach ($parsers as $parser) {
+        $block = $parser->getBlock();
     }
 
-    public function testAlertStartImportant(): void
-    {
-        $cursor = new Cursor('> [!IMPORTANT]');
+    expect($block)->toBeInstanceOf(Alert::class)
+        ->and($block->getType())->toBe('tip');
+});
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+it('recognizes a IMPORTANT block', function () {
+    $cursor = new Cursor('> [!IMPORTANT]');
 
-        $this->assertNotNull($start);
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
-        $parsers = $start->getBlockParsers();
-        $this->assertCount(1, $parsers);
+    expect($start)->not->toBeNull();
 
-        $block = null;
-        foreach ($parsers as $parser) {
-            $block = $parser->getBlock();
-        }
+    $parsers = $start->getBlockParsers();
+    $this->assertCount(1, $parsers);
 
-        $this->assertInstanceOf(Alert::class, $block);
-
-        $this->assertSame('important', $block->getType());
+    $block = null;
+    foreach ($parsers as $parser) {
+        $block = $parser->getBlock();
     }
 
-    public function testAlertStartWarning(): void
-    {
-        $cursor = new Cursor('> [!WARNING]');
+    expect($block)->toBeInstanceOf(Alert::class)
+        ->and($block->getType())->toBe('important');
+});
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+it('recognizes a WARNING block', function () {
+    $cursor = new Cursor('> [!WARNING]');
 
-        $this->assertNotNull($start);
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
-        $parsers = $start->getBlockParsers();
-        $this->assertCount(1, $parsers);
+    expect($start)->not->toBeNull();
 
-        $block = null;
-        foreach ($parsers as $parser) {
-            $block = $parser->getBlock();
-        }
+    $parsers = $start->getBlockParsers();
+    $this->assertCount(1, $parsers);
 
-        $this->assertInstanceOf(Alert::class, $block);
-
-        $this->assertSame('warning', $block->getType());
+    $block = null;
+    foreach ($parsers as $parser) {
+        $block = $parser->getBlock();
     }
 
-    public function testAlertStartCaution(): void
-    {
-        $cursor = new Cursor('> [!CAUTION]');
+    expect($block)->toBeInstanceOf(Alert::class)
+        ->and($block->getType())->toBe('warning');
+});
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+it('recognizes a CAUTION block', function () {
+    $cursor = new Cursor('> [!CAUTION]');
 
-        $this->assertNotNull($start);
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
-        $parsers = $start->getBlockParsers();
-        $this->assertCount(1, $parsers);
+    expect($start)->not->toBeNull();
 
-        $block = null;
-        foreach ($parsers as $parser) {
-            $block = $parser->getBlock();
-        }
+    $parsers = $start->getBlockParsers();
+    $this->assertCount(1, $parsers);
 
-        $this->assertInstanceOf(Alert::class, $block);
-
-        $this->assertSame('caution', $block->getType());
+    $block = null;
+    foreach ($parsers as $parser) {
+        $block = $parser->getBlock();
     }
 
-    public function testAlertStartWithIndentation(): void
-    {
-        $cursor = new Cursor('  [!NOTE]');
+    expect($block)->toBeInstanceOf(Alert::class)
+        ->and($block->getType())->toBe('caution');
+});
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+it('recognizes a wrong indentation', function () {
+    $cursor = new Cursor('  [!NOTE]');
 
-        $this->assertNull($start);
-    }
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
-    public function testAlertWrongStart(): void
-    {
-        $cursor = new Cursor('! [!NOTE]');
+    expect($start)->toBeNull();
+});
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+it('recognizes a wrong start block', function () {
+    $cursor = new Cursor('! [!NOTE]');
 
-        $this->assertNull($start);
-    }
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
 
-    public function testWrongTitleReturnNull(): void
-    {
-        $cursor = new Cursor('> [!WRONG]');
+    expect($start)->toBeNull();
+});
 
-        $parser = new AlertStartParser();
-        $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+it('recognizes a wrong title', function () {
+    $cursor = new Cursor('> [!WRONG]');
 
-        $this->assertNull($start);
-    }
-}
+    $parser = new AlertStartParser();
+    $start = $parser->tryStart($cursor, $this->createMock(MarkdownParserStateInterface::class));
+
+    expect($start)->toBeNull();
+});

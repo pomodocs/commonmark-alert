@@ -15,49 +15,40 @@ use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
 use League\CommonMark\Parser\Cursor;
-use PHPUnit\Framework\TestCase;
 use PomoDocs\CommonMark\Alert\Node\Block\Alert;
 use PomoDocs\CommonMark\Alert\Parser\Block\AlertParser;
 
-final class AlertParserTest extends TestCase
-{
-    public function testGetter(): void
-    {
-        $parser = new AlertParser('warning');
+it('gets the correct type', function () {
+    $parser = new AlertParser('warning');
 
-        $this->assertInstanceOf(Alert::class, $parser->getBlock());
-        $this->assertEquals('warning', $parser->getBlock()->getType());
-    }
+    expect($parser->getBlock())->toBeInstanceOf(Alert::class)
+        ->and($parser->getBlock()->getType())->toBe('warning');
+});
 
-    public function testIsContainer(): void
-    {
-        $parser = new AlertParser('tip');
-        $this->assertTrue($parser->isContainer());
-    }
+it('checks if the block contains some other blocks', function () {
+    expect((new AlertParser('tip'))->isContainer())->toBeTrue();
+});
 
-    public function testCanContain(): void
-    {
-        $parser = new AlertParser('tip');
-        $this->assertTrue($parser->canContain($this->createMock(AbstractBlock::class)));
-    }
+it('checks if the block can contain some othe blocks', function () {
+    $parser = new AlertParser('tip');
 
-    public function testTryContinue(): void
-    {
-        $cursor = new Cursor('> Lorem ipsum');
-        $parser = new AlertParser('tip');
+    expect($parser->canContain($this->createMock(AbstractBlock::class)))->toBeTrue();
+});
 
-        $continue = $parser->tryContinue($cursor, $this->createMock(BlockContinueParserInterface::class));
+it('tries to continue parsing', function () {
+    $cursor = new Cursor('> Lorem ipsum');
+    $parser = new AlertParser('tip');
 
-        $this->assertInstanceOf(BlockContinue::class, $continue);
-    }
+    $continue = $parser->tryContinue($cursor, $this->createMock(BlockContinueParserInterface::class));
 
-    public function testTryContinueWrongBlock(): void
-    {
-        $cursor = new Cursor(' Lorem ipsum');
-        $parser = new AlertParser('tip');
+    expect($continue)->toBeInstanceOf(BlockContinue::class);
+});
 
-        $continue = $parser->tryContinue($cursor, $this->createMock(BlockContinueParserInterface::class));
+it('tries to continue parsing a wrong block', function () {
+    $cursor = new Cursor(' Lorem ipsum');
+    $parser = new AlertParser('tip');
 
-        $this->assertNull($continue);
-    }
-}
+    $continue = $parser->tryContinue($cursor, $this->createMock(BlockContinueParserInterface::class));
+
+    expect($continue)->toBeNull();
+});

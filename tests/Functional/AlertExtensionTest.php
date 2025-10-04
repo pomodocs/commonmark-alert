@@ -14,91 +14,78 @@ namespace PomoDocs\CommonMark\Alert\Tests\Functional;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\MarkdownConverter;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PomoDocs\CommonMark\Alert\AlertExtension;
-use PomoDocs\CommonMark\Alert\Tests\AlertTestCase;
 
-final class AlertExtensionTest extends AlertTestCase
-{
-    #[DataProvider('markdownProvider')]
-    public function testRenderWithDefaultConfiguration(string $md, string $expected): void
-    {
-        $environment = new Environment();
-        $environment->addExtension(new AlertExtension());
-        $environment->addExtension(new CommonMarkCoreExtension());
-        $converter = new MarkdownConverter($environment);
+it('renders the markdown string With default configuration', function (string $md, string $expected) {
+    $environment = new Environment();
+    $environment->addExtension(new AlertExtension());
+    $environment->addExtension(new CommonMarkCoreExtension());
+    $converter = new MarkdownConverter($environment);
 
-        $this->assertEquals($expected, (string) $converter->convert($md));
-    }
+    expect((string) $converter->convert($md))->toBe($expected);
+})->with('markdown');
 
-    #[DataProvider('markdownConfigurationProvider')]
-    public function testRenderWithConfiguration(string $md, string $expected): void
-    {
-        $config = [
-            'alert' => [
-                'colors' => [
-                    'note' => 'primary',
-                    'tip' => 'info',
-                    'important' => 'success',
-                    'warning' => 'warning',
-                    'caution' => 'danger',
-                ],
-                'icons' => [
-                    'active' => true,
-                    'use_svg' => true,
-                ],
+it('renders the markdown string with configuration', function (string $md, string $expected) {
+    $config = [
+        'alert' => [
+            'colors' => [
+                'note' => 'primary',
+                'tip' => 'info',
+                'important' => 'success',
+                'warning' => 'warning',
+                'caution' => 'danger',
             ],
-        ];
-
-        $environment = new Environment($config);
-        $environment->addExtension(new AlertExtension());
-        $environment->addExtension(new CommonMarkCoreExtension());
-        $converter = new MarkdownConverter($environment);
-
-        $this->assertEquals($expected, (string) $converter->convert($md));
-    }
-
-    #[DataProvider('markdownClassProvider')]
-    public function testRenderWithClassCss(string $md, string $expected): void
-    {
-        $config = [
-            'alert' => [
-                'class_name' => 'admonition',
+            'icons' => [
+                'active' => true,
+                'use_svg' => true,
             ],
-        ];
+        ],
+    ];
 
-        $environment = new Environment($config);
-        $environment->addExtension(new AlertExtension());
-        $environment->addExtension(new CommonMarkCoreExtension());
-        $converter = new MarkdownConverter($environment);
+    $environment = new Environment($config);
+    $environment->addExtension(new AlertExtension());
+    $environment->addExtension(new CommonMarkCoreExtension());
+    $converter = new MarkdownConverter($environment);
 
-        $this->assertEquals($expected, (string) $converter->convert($md));
-    }
+    expect((string) $converter->convert($md))->toBe($expected);
+})->with('markdownConfiguration');
 
-    #[DataProvider('markdownIconProvider')]
-    public function testRenderWithIconNames(string $md, string $expected): void
-    {
-        $config = [
-            'alert' => [
-                'colors' => [
-                    'note' => 'primary',
-                    'tip' => 'info',
-                    'important' => 'success',
-                    'warning' => 'warning',
-                    'caution' => 'danger',
-                ],
-                'icons' => [
-                    'active' => true,
-                    'use_svg' => false,
-                ],
+it('renders the markdown string with defined style sheet', function (string $md, string $expected) {
+    $config = [
+        'alert' => [
+            'class_name' => 'admonition',
+        ],
+    ];
+
+    $environment = new Environment($config);
+    $environment->addExtension(new AlertExtension());
+    $environment->addExtension(new CommonMarkCoreExtension());
+    $converter = new MarkdownConverter($environment);
+
+    expect((string) $converter->convert($md))->toBe($expected);
+})->with('markdownClass');
+
+it('renders the markdown string with icons by name', function (string $md, string $expected) {
+    $config = [
+        'alert' => [
+            'colors' => [
+                'note' => 'primary',
+                'tip' => 'info',
+                'important' => 'success',
+                'warning' => 'warning',
+                'caution' => 'danger',
             ],
-        ];
+            'icons' => [
+                'active' => true,
+                'use_svg' => false,
+            ],
+        ],
+    ];
 
-        $environment = new Environment($config);
-        $environment->addExtension(new AlertExtension());
-        $environment->addExtension(new CommonMarkCoreExtension());
-        $converter = new MarkdownConverter($environment);
+    $environment = new Environment($config);
+    $environment->addExtension(new AlertExtension());
+    $environment->addExtension(new CommonMarkCoreExtension());
+    $converter = new MarkdownConverter($environment);
 
-        $this->assertEquals($expected, (string) $converter->convert($md));
-    }
-}
+    $this->assertEquals($expected, (string) $converter->convert($md));
+})->with('markdownIcons');

@@ -15,23 +15,16 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Output\RenderedContentInterface;
 use League\CommonMark\Xml\MarkdownToXmlConverter;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PomoDocs\CommonMark\Alert\AlertExtension;
-use PomoDocs\CommonMark\Alert\Tests\AlertTestCase;
 
-final class MarkdownToXmlConverterTest extends AlertTestCase
-{
-    #[DataProvider('markdownXml')]
-    public function testConvert(string $md, string $xml): void
-    {
-        $environment = new Environment();
-        $environment->addExtension(new AlertExtension());
-        $environment->addExtension(new CommonMarkCoreExtension());
-        $converter = new MarkdownToXmlConverter($environment);
+it("renders the markdown string into xml", function (string $md, string $xml) {
+    $environment = new Environment();
+    $environment->addExtension(new AlertExtension());
+    $environment->addExtension(new CommonMarkCoreExtension());
+    $converter = new MarkdownToXmlConverter($environment);
 
-        $actual = $converter->convert($md);
+    $actual = $converter->convert($md);
 
-        $this->assertInstanceOf(RenderedContentInterface::class, $actual);
-        $this->assertSame($xml, $actual->getContent());
-    }
-}
+    expect($actual)->toBeInstanceOf(RenderedContentInterface::class)
+        ->and($actual->getContent())->toBe($xml);
+})->with('markdownXml');

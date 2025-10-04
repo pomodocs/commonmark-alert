@@ -9,24 +9,12 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMark\Alert\Tests\Unit\Node\Block;
-
-use PHPUnit\Framework\TestCase;
 use PomoDocs\CommonMark\Alert\Node\Block\Alert;
 
-final class AlertTest extends TestCase
-{
-    public function testConstructorAndGetter(): void
-    {
-        $node = new Alert('warning');
+it('tests constructor and getter', function () {
+    expect((new Alert('warning'))->getType())->toBe('warning');
+});
 
-        $this->assertEquals($node->getType(), 'warning');
-    }
-
-    public function testConstructorWithDefaultValue(): void
-    {
-        $node = new Alert();
-
-        $this->assertEquals($node->getType(), 'note');
-    }
-}
+it('tests constructor with default values', function () {
+    expect((new Alert())->getType())->toBe('note');
+});

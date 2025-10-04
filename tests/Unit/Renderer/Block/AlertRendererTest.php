@@ -9,29 +9,21 @@ declare(strict_types=1);
  * with this source code.
  */
 
-namespace PomoDocs\CommonMark\Alert\Tests\Unit\Renderer\Block;
-
 use League\CommonMark\Environment\Environment;
-use PHPUnit\Framework\TestCase;
 use PomoDocs\CommonMark\Alert\AlertExtension;
 use PomoDocs\CommonMark\Alert\Renderer\Block\AlertRenderer;
-use ReflectionProperty;
 
-final class AlertRendererTest extends TestCase
-{
-    public function testSetConfiguration(): void
-    {
-        $config = Environment::createDefaultConfiguration();
-        $extension = new AlertExtension();
-        $extension->configureSchema($config);
-        $configuration = $config->reader();
+it('sets the configuration', function () {
+    $config = Environment::createDefaultConfiguration();
+    $extension = new AlertExtension();
+    $extension->configureSchema($config);
+    $configuration = $config->reader();
 
-        $renderer = new AlertRenderer();
-        $renderer->setConfiguration($configuration);
+    $renderer = new AlertRenderer();
+    $renderer->setConfiguration($configuration);
 
-        $property = new ReflectionProperty($renderer, 'config');
-        $property->setAccessible(true);
+    $property = new \ReflectionProperty($renderer, 'config');
+    $property->setAccessible(true);
 
-        $this->assertSame($property->getValue($renderer), $configuration);
-    }
-}
+    expect($configuration)->toBe($property->getValue($renderer));
+});
