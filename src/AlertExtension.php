@@ -38,6 +38,13 @@ final class AlertExtension implements ConfigurableExtensionInterface
                 'warning' => Expect::string('warning'),
                 'caution' => Expect::string('caution'),
             ]),
+            'labels' => Expect::structure([
+                'note' => Expect::string('Note'),
+                'tip' => Expect::string('Tip'),
+                'important' => Expect::string('Important'),
+                'warning' => Expect::string('Warning'),
+                'caution' => Expect::string('Caution'),
+            ]),
             'icons' => Expect::structure([
                 'active' => Expect::bool(false),
                 'use_svg' => Expect::bool(false),

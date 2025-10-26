@@ -89,3 +89,24 @@ it('renders the markdown string with icons by name', function (string $md, strin
 
     $this->assertEquals($expected, (string) $converter->convert($md));
 })->with('markdownIcons');
+
+it('renders the markdown string with localized labels', function (string $md, string $expected) {
+    $config = [
+        'alert' => [
+            'labels' => [
+                'note' => 'Nota',
+                'tip' => 'Consilium',
+                'important' => 'Maximus',
+                'warning' => 'Admonitus',
+                'caution' => 'Cautela',
+            ],
+        ],
+    ];
+
+    $environment = new Environment($config);
+    $environment->addExtension(new AlertExtension());
+    $environment->addExtension(new CommonMarkCoreExtension());
+    $converter = new MarkdownConverter($environment);
+
+    $this->assertEquals($expected, (string) $converter->convert($md));
+})->with('markdownLocalized');

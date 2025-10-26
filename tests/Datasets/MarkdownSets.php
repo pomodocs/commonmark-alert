@@ -338,3 +338,61 @@ sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
 ',
     ],
 ]);
+
+dataset('markdownLocalized', [
+    [
+        '> [!NOTE]
+> Note lorem ipsum dolor sit amet, _consectetur adipiscing elit_
+> sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.',
+        '<div class="alert alert-note">
+<p class="alert-title">Nota</p>
+<p>Note lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>
+sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
+</div>
+',
+    ],
+    [
+        '> [!TIP]
+> Tip lorem ipsum dolor sit amet, _consectetur adipiscing elit_
+> sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.',
+        '<div class="alert alert-tip">
+<p class="alert-title">Consilium</p>
+<p>Tip lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>
+sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
+</div>
+',
+    ],
+    [
+        '> [!IMPORTANT]
+> Important lorem ipsum dolor sit amet, _consectetur adipiscing elit_
+> sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.',
+        '<div class="alert alert-important">
+<p class="alert-title">Maximus</p>
+<p>Important lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>
+sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
+</div>
+',
+    ],
+    [
+        '> [!WARNING]
+> Warning lorem ipsum dolor sit amet, _consectetur adipiscing elit_
+> sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.',
+        '<div class="alert alert-warning">
+<p class="alert-title">Admonitus</p>
+<p>Warning lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>
+sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
+</div>
+',
+    ],
+    [
+        '> [!CAUTION]
+> Caution lorem ipsum dolor sit amet, _consectetur adipiscing elit_
+> sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.',
+        '<div class="alert alert-caution">
+<p class="alert-title">Cautela</p>
+<p>Caution lorem ipsum dolor sit amet, <em>consectetur adipiscing elit</em>
+sed do eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
+</div>
+',
+    ],
+]);

@@ -49,7 +49,10 @@ final class AlertRenderer implements NodeRendererInterface, XmlNodeRendererInter
 
         $icon = $this->getIconString($type);
 
-        $title = "<p class=\"$class-title\">$icon" . \ucfirst($type) . "</p>";
+        /** @var string $label */
+        $label = $this->config->get("alert/labels/$type");
+
+        $title = "<p class=\"$class-title\">{$icon}{$label}</p>";
 
         /** @var array<string, array<array-key, string>> $attributes */
         $attributes = $node->data->get('attributes');

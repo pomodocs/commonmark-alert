@@ -107,6 +107,13 @@ $options = [
             'warning' => 'warning',
             'caution' => 'caution',
         ],
+        'labels' => [
+            'note' => 'Note',
+            'tip' => 'Tip',
+            'important' => 'Important',
+            'warning' => 'Warning',
+            'caution' => 'Caution',
+        ],
         'icons' => [
             'active' => false,
             'use_svg' => false,
@@ -158,6 +165,10 @@ and the resulted `<div>` tag, for a NOTE alert will be:
 ```html
 <div class="alert alert-primary">
 ```
+
+### labels
+
+An array of text labels that can be used to localize the alerts in different languages.
 
 ### icons
 
