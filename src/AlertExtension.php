@@ -47,7 +47,7 @@ final class AlertExtension implements ConfigurableExtensionInterface
             ]),
             'icons' => Expect::structure([
                 'active' => Expect::bool(false),
-                'use_svg' => Expect::bool(false),
+                'use_svg' => Expect::bool(true),
                 'names' => Expect::structure([
                     'note' => Expect::string('octicons octicons-info'),
                     'tip' => Expect::string('octicons octicons-light-bulb'),
