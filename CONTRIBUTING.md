@@ -26,7 +26,7 @@ To avoid conflicts between dependencies, we use Phive to install the development
 
 While developing, the test part is very important: if you apply a patch to the existing code, the test suite must run without errors or failures and if you add a new functionality, no one will consider it without tests.
 
-Our test tool is [PhpUnit](https://phpunit.de/) and we provide a script to launch it:
+Our test tool is [Pest](https://pestphp.com/) and we provide a script to launch it:
 
 ```bash
 composer test
@@ -34,8 +34,9 @@ composer test
 
 ## Code Coverage
 
-We provide two commands to generate the code coverage report in _html_ or _xml_ format:
+We provide three commands to generate the code coverage report in console, _html_ or _xml_ format:
 
+-  `composer coverage` command displays a code coverage report on the console output.
 -  `composer coverage:html` command generates a code coverage report in _html_ format, into the directory `coverage/`
 -  `composer coverage:clover` generates the report in _xml_ format, into `clover.xml` file.
 
