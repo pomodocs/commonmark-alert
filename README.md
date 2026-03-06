@@ -177,7 +177,7 @@ An array of parameters to configure an optional icon, near the title.
 The icons array has the following keys:
 
 -  __active__: if display the icon or not. Default is `false`.
--  __use_svg__: if use the svg icons defined in `svg` options array or use the css classes defined in `names` options array. Default is `false`.
+-  __use_svg__: if use the svg icons defined in `svg` options array or use the css classes defined in `names` options array. Default is `true`.
 -  __names__: the class names to  use to apply the icons. Default: Octicons icon set.
 -  __svg__: the svg icons to use. Default: Octicons icon set.
 
