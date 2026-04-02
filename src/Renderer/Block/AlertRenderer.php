@@ -54,12 +54,8 @@ final class AlertRenderer implements NodeRendererInterface, XmlNodeRendererInter
 
         $title = "<p class=\"$class-title\">{$icon}{$label}</p>";
 
-        /** @var array<string, array<array-key, string>> $attributes */
-        $attributes = $node->data->get('attributes');
-
-        /** @var string $color */
-        $color = $this->config->get("alert/colors/$type");
-        $attributes['class'] = "$class $class-$color";
+        $node->data->append('attributes/class', "$class");
+        $node->data->append('attributes/class', "$class-{$this->config->get("alert/colors/$type")}");
 
         $filling = $childRenderer->renderNodes($node->children());
         $innerSeparator = $childRenderer->getInnerSeparator();
@@ -69,7 +65,7 @@ final class AlertRenderer implements NodeRendererInterface, XmlNodeRendererInter
             . $innerSeparator
             . ($filling !== '' ? $filling . $innerSeparator : '');
 
-        return new HtmlElement('div', $attributes, $content);
+        return new HtmlElement('div', $node->data->get('attributes'), $content);
     }
 
     public function getXmlTagName(Node $node): string
