@@ -7,7 +7,7 @@ $finder = (new PhpCsFixer\Finder())
 
 return (new PhpCsFixer\Config())
     ->setRules([
-        '@PER-CS3.0' => true,
+        '@PER-CS3x0' => true,
     ])
     ->setFinder($finder)
 ;

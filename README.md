@@ -188,6 +188,7 @@ $config = [
     'alert' => [
         'icons' => [
             'active' => true,
+            'use_svg' => false,
             'names' => [
                 'note' => 'fa-solid fa-circle-info',
                 'tip' => 'fa-regular fa-lightbulb',
@@ -222,8 +223,7 @@ If we want to use the default svg icons, the configuration array is the followin
 $config = [
     'alert' => [
         'icons' => [
-            'active' => true,
-            'use_svg' => true
+            'active' => true
         ]
     ]
 ];
